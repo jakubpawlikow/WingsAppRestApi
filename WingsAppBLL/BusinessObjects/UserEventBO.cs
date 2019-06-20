@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 
@@ -9,8 +10,8 @@ namespace WingsAppBLL.BusinessObjects
     {
         public int ID { get; set; }
 
-        // [MaxLength(50)]
-        // [Required]
+        [MaxLength(50)]
+        [Required]
         public string Title { get; set; }
         public string Description { get; set; }
         // public int UserID { get; set; }
