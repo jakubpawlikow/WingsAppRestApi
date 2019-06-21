@@ -37,8 +37,14 @@ namespace WingsAppRestAPI
             {
                 app.UseDeveloperExceptionPage();
                 var facade = new BLLFacade();
-                facade.UserEventService.Create(new UserEventBO() {Title="First Title", Description="Desc1"});
-                facade.UserEventService.Create(new UserEventBO() {Title="Second Title", Description="Desc2"});
+
+                var reporter = facade.UserProfileService.Create(new UserProfileBO() {FirstName="First", LastName="Last", JoinDate = DateTime.Now});
+                facade.UserProfileService.Create(new UserProfileBO() {FirstName="Second", LastName="LastSec", JoinDate = DateTime.Now.AddMonths(-1)});
+
+                facade.UserEventService.Create(new UserEventBO() {Title="First Title", Description="Desc1", Reporter=reporter});
+                facade.UserEventService.Create(new UserEventBO() {Title="Second Title", Description="Desc2", Reporter=reporter});
+
+
             }
             else
             {

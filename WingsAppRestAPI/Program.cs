@@ -19,6 +19,7 @@ namespace WingsAppRestAPI
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .CaptureStartupErrors(true)
                 .UseStartup<Startup>();
     }
 }
