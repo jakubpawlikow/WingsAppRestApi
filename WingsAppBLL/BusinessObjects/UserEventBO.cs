@@ -20,5 +20,6 @@ namespace WingsAppBLL.BusinessObjects
         // public DateTime StartDate { get; private set; }
         // public DateTime EndDate { get; private set; }
         // public IList<UserEventTag> UserEventTags { get; set; } = new List<UserEventTag>();
+        public UserProfileBO Reporter { get; set; }
     }
 }

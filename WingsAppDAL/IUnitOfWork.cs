@@ -7,6 +7,7 @@ namespace WingsAppDAL
     public interface IUnitOfWork : IDisposable
     {
         IUserEventRepository UserEventRepository { get; }
+        IUserProfileRepository UserProfileRepository { get; }
 
         int Complete();
 

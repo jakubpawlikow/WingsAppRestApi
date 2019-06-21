@@ -4,15 +4,17 @@ using WingsAppDAL.Repositories;
 
 namespace WingsAppDAL.UOW
 {
-    public class UnitOfWorkMem : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         public IUserEventRepository UserEventRepository { get; internal set; }
-        private InMemoryContext context;
+        public IUserProfileRepository UserProfileRepository { get; internal set; }
+        private WingsAppContext context;
 
-        public UnitOfWorkMem()
+        public UnitOfWork()
         {
-            context = new InMemoryContext();
+            context = new WingsAppContext();
             UserEventRepository = new UserEventRepositoryEFMemory(context);
+            UserProfileRepository = new UserProfileRepository(context);
         }
 
         public int Complete()

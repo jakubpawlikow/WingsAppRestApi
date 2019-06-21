@@ -11,21 +11,26 @@ namespace WingsAppBLL.Converters
 
         internal UserEvent Convert(UserEventBO user_event)
         {
+            if (user_event == null) { return null; }
+
             return new UserEvent()
             {
                 ID = user_event.ID,
                 Title = user_event.Title,
-                Description = user_event.Description
+                Description = user_event.Description,
+                Reporter = new UserProfileConverter().Convert(user_event.Reporter)
             };
         }
 
         internal UserEventBO Convert(UserEvent user_event)
         {
+            if (user_event == null) { return null; }
             return new UserEventBO()
             {
                 ID = user_event.ID,
                 Title = user_event.Title,
-                Description = user_event.Description
+                Description = user_event.Description,
+                Reporter = new UserProfileConverter().Convert(user_event.Reporter)
             };
         }
     }

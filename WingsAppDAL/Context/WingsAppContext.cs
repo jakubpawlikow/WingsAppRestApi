@@ -7,19 +7,20 @@ using WingsAppDAL.Entities;
 
 namespace WingsAppDAL.Context
 {
-    class InMemoryContext : DbContext
+    class WingsAppContext : DbContext
     {
-        static DbContextOptions<InMemoryContext> options = 
-            new DbContextOptionsBuilder<InMemoryContext>()
+        static DbContextOptions<WingsAppContext> options = 
+            new DbContextOptionsBuilder<WingsAppContext>()
                 .UseInMemoryDatabase("SomeDB")
                 .Options;
 
         // Options that we want in memory
-        public InMemoryContext() : base(options)
+        public WingsAppContext() : base(options)
         {
 
         }
 
         public DbSet<UserEvent> UserEvents { get; set; }
+        public DbSet<UserProfile> UserProfiles {get; set; }
     }
 }

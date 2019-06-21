@@ -12,5 +12,10 @@ namespace WingsAppBLL
         {
             get {return new UserEventService(new DALFacade()); }
         }
+
+        public IUserProfileService UserProfileService
+        {
+            get {return new UserProfileService(new DALFacade()); }
+        }
     }
 }

@@ -8,21 +8,11 @@ namespace WingsAppDAL
 {
     public class DALFacade
     {
-        public IUserEventRepository UserEventRepository
-        { 
-            get 
-            { 
-                return new UserEventRepositoryEFMemory(
-                    new Context.InMemoryContext()
-                ); 
-            } 
-        }
-
          public IUnitOfWork UnitOfWork
         { 
             get 
             { 
-                return new UnitOfWorkMem(); 
+                return new UnitOfWork(); 
             } 
         }
     }
