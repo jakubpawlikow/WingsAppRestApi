@@ -18,7 +18,6 @@ namespace WingsAppBLL.Converters
                 Id = userEvent.Id,
                 Title = userEvent.Title,
                 Description = userEvent.Description,
-                Reporter = new UserProfileConverter().Convert(userEvent.Reporter),
                 ReporterId = userEvent.ReporterId
             };
         }

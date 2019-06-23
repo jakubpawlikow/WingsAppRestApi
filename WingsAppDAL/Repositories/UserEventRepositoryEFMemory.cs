@@ -19,10 +19,6 @@ namespace WingsAppDAL.Repositories
         //Create
         public UserEvent Create(UserEvent userEvent)
         {
-            if (userEvent.Reporter != null)
-            {
-                _context.Entry(userEvent.Reporter).State = EntityState.Unchanged;
-            }
             _context.UserEvents.Add(userEvent);
             return userEvent;
         }

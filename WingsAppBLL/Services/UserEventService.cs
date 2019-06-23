@@ -43,6 +43,7 @@ namespace WingsAppBLL.Services
             using(var uow = facade.UnitOfWork)
             {
                 var userEvent = uow.UserEventRepository.Get(Id);
+                userEvent.Reporter = uow.UserProfileRepository.Get(userEvent.ReporterId);
                 return conv.Convert(userEvent);
             }
         }
@@ -60,7 +61,9 @@ namespace WingsAppBLL.Services
                 
                 userEventFromDb.Title = userEvent.Title;
                 userEventFromDb.Description = userEvent.Description;
+                userEventFromDb.ReporterId = userEvent.ReporterId;
                 uow.Complete();
+                userEventFromDb.Reporter = uow.UserProfileRepository.Get(userEvent.ReporterId);
                 return conv.Convert(userEventFromDb);
             }
         }
