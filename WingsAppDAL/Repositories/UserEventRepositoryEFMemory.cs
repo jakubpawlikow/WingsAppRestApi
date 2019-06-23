@@ -17,32 +17,32 @@ namespace WingsAppDAL.Repositories
             _context = context;
         }
         //Create
-        public UserEvent Create(UserEvent user_event)
+        public UserEvent Create(UserEvent userEvent)
         {
-            if (user_event.Reporter != null)
+            if (userEvent.Reporter != null)
             {
-                _context.Entry(user_event.Reporter).State = EntityState.Unchanged;
+                _context.Entry(userEvent.Reporter).State = EntityState.Unchanged;
             }
-            _context.UserEvents.Add(user_event);
-            return user_event;
+            _context.UserEvents.Add(userEvent);
+            return userEvent;
         }
 
         //Read
         public List<UserEvent> GetAll()
         {
-            return _context.UserEvents.Include(ue => ue.Reporter).ToList();
+            return _context.UserEvents.ToList();
         }
         public UserEvent Get(int Id)
         {
-            return _context.UserEvents.FirstOrDefault(obj => obj.ID == Id);
+            return _context.UserEvents.FirstOrDefault(obj => obj.Id == Id);
         }
 
         //Delete
         public UserEvent Delete(int Id)
         {
-            var user_event = Get(Id);
-            _context.UserEvents.Remove(user_event);
-            return user_event;
+            var userEvent = Get(Id);
+            _context.UserEvents.Remove(userEvent);
+            return userEvent;
         }
     }
 }

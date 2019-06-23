@@ -7,7 +7,7 @@ namespace WingsAppDAL.Entities
 {
     public class UserEvent
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         // [MaxLength(50)]
         // [Required]
@@ -19,6 +19,7 @@ namespace WingsAppDAL.Entities
         // public DateTime StartDate { get; private set; }
         // public DateTime EndDate { get; private set; }
         // public IList<UserEventTag> UserEventTags { get; set; } = new List<UserEventTag>();
+        public int ReporterId { get; set; }
         public UserProfile Reporter { get; set; }
     }
 }

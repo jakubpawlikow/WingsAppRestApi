@@ -18,11 +18,11 @@ namespace WingsAppBLL.Services
             this.facade = facade;
         }
         //Create
-        public UserProfileBO Create(UserProfileBO user_profile)
+        public UserProfileBO Create(UserProfileBO userProfile)
         {
             using(var uow = facade.UnitOfWork)
             {
-                var newProfile = uow.UserProfileRepository.Create(conv.Convert(user_profile));
+                var newProfile = uow.UserProfileRepository.Create(conv.Convert(userProfile));
                 uow.Complete();
                 return conv.Convert(newProfile);
             }
@@ -47,19 +47,19 @@ namespace WingsAppBLL.Services
         }
 
         //Update
-        public UserProfileBO Update(UserProfileBO user_profile)        
+        public UserProfileBO Update(UserProfileBO userProfile)        
         {
             using(var uow = facade.UnitOfWork)
             {
-                var userProfileFromDb = uow.UserProfileRepository.Get(user_profile.Id);
+                var userProfileFromDb = uow.UserProfileRepository.Get(userProfile.Id);
                 if (userProfileFromDb == null)
                 {
                     throw new InvalidOperationException("User Profile not found");
                 }
                 
-                userProfileFromDb.FirstName = user_profile.FirstName;
-                userProfileFromDb.LastName = user_profile.LastName;
-                userProfileFromDb.JoinDate = user_profile.JoinDate;
+                userProfileFromDb.FirstName = userProfile.FirstName;
+                userProfileFromDb.LastName = userProfile.LastName;
+                userProfileFromDb.JoinDate = userProfile.JoinDate;
                 uow.Complete();
                 return conv.Convert(userProfileFromDb);
             }

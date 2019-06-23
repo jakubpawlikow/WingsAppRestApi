@@ -9,28 +9,28 @@ namespace WingsAppBLL.Converters
     class UserProfileConverter
     {
 
-        internal UserProfile Convert(UserProfileBO user_profile)
+        internal UserProfile Convert(UserProfileBO userProfile)
         {
-            if (user_profile == null) { return null; }
+            if (userProfile == null) { return null; }
             return new UserProfile()
             {
-                Id = user_profile.Id,
-                FirstName = user_profile.FirstName,
-                LastName = user_profile.LastName,
-                JoinDate = user_profile.JoinDate,
+                Id = userProfile.Id,
+                FirstName = userProfile.FirstName,
+                LastName = userProfile.LastName,
+                JoinDate = userProfile.JoinDate,
                 
             };
         }
 
-        internal UserProfileBO Convert(UserProfile user_profile)
+        internal UserProfileBO Convert(UserProfile userProfile)
         {
-            if (user_profile == null) { return null; }
+            if (userProfile == null) { return null; }
             return new UserProfileBO()
             {
-                Id = user_profile.Id,
-                FirstName = user_profile.FirstName,
-                LastName = user_profile.LastName,
-                JoinDate = user_profile.JoinDate
+                Id = userProfile.Id,
+                FirstName = userProfile.FirstName,
+                LastName = userProfile.LastName,
+                JoinDate = userProfile.JoinDate
             };
         }
     }

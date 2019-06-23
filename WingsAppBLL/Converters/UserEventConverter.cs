@@ -9,28 +9,30 @@ namespace WingsAppBLL.Converters
     class UserEventConverter
     {
 
-        internal UserEvent Convert(UserEventBO user_event)
+        internal UserEvent Convert(UserEventBO userEvent)
         {
-            if (user_event == null) { return null; }
+            if (userEvent == null) { return null; }
 
             return new UserEvent()
             {
-                ID = user_event.ID,
-                Title = user_event.Title,
-                Description = user_event.Description,
-                Reporter = new UserProfileConverter().Convert(user_event.Reporter)
+                Id = userEvent.Id,
+                Title = userEvent.Title,
+                Description = userEvent.Description,
+                Reporter = new UserProfileConverter().Convert(userEvent.Reporter),
+                ReporterId = userEvent.ReporterId
             };
         }
 
-        internal UserEventBO Convert(UserEvent user_event)
+        internal UserEventBO Convert(UserEvent userEvent)
         {
-            if (user_event == null) { return null; }
+            if (userEvent == null) { return null; }
             return new UserEventBO()
             {
-                ID = user_event.ID,
-                Title = user_event.Title,
-                Description = user_event.Description,
-                Reporter = new UserProfileConverter().Convert(user_event.Reporter)
+                Id = userEvent.Id,
+                Title = userEvent.Title,
+                Description = userEvent.Description,
+                Reporter = new UserProfileConverter().Convert(userEvent.Reporter),
+                ReporterId = userEvent.ReporterId
             };
         }
     }

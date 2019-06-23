@@ -16,10 +16,10 @@ namespace WingsAppDAL.Repositories
             _context = context;
         }
         //Create
-        public UserProfile Create(UserProfile user_profile)
+        public UserProfile Create(UserProfile userProfile)
         {
-            _context.UserProfiles.Add(user_profile);
-            return user_profile;
+            _context.UserProfiles.Add(userProfile);
+            return userProfile;
         }
 
         //Read
@@ -35,9 +35,9 @@ namespace WingsAppDAL.Repositories
         //Delete
         public UserProfile Delete(int Id)
         {
-            var user_profile = Get(Id);
-            _context.UserProfiles.Remove(user_profile);
-            return user_profile;
+            var userProfile = Get(Id);
+            _context.UserProfiles.Remove(userProfile);
+            return userProfile;
         }
     }
 }

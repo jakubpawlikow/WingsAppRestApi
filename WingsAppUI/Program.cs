@@ -9,13 +9,13 @@ namespace WingsAppUI
         static BLLFacade bllFacade = new BLLFacade(); 
         static void Main(string[] args)
         {
-            var user_event = new UserEventBO()
+            var userEvent = new UserEventBO()
             {
                 Title = "First Title",
                 Description = "First Description"
             };
 
-            bllFacade.UserEventService.Create(user_event);
+            bllFacade.UserEventService.Create(userEvent);
 
             bllFacade.UserEventService.Create(new UserEventBO(){
                 Title = "Second Title",
@@ -68,30 +68,30 @@ namespace WingsAppUI
 
         private static void EditUserEvent()
         {
-            var user_event = FindUserEventById();
-            if (user_event != null)
+            var userEvent = FindUserEventById();
+            if (userEvent != null)
             {
                 Console.WriteLine("Title: ");
-                user_event.Title = Console.ReadLine();
+                userEvent.Title = Console.ReadLine();
                 Console.WriteLine("Description: ");
-                user_event.Description = Console.ReadLine();
-                bllFacade.UserEventService.Update(user_event);
+                userEvent.Description = Console.ReadLine();
+                bllFacade.UserEventService.Update(userEvent);
             }
-            var response = user_event == null ? "Not Found" : "Event Edited";
+            var response = userEvent == null ? "Not Found" : "Event Edited";
             Console.WriteLine(response);
 
         }
 
         private static void DeleteUserEvent()
         {
-            var user_event = FindUserEventById();
-            if (user_event != null)
+            var userEvent = FindUserEventById();
+            if (userEvent != null)
             {
-                bllFacade.UserEventService.Delete(user_event.ID); 
+                bllFacade.UserEventService.Delete(userEvent.Id); 
                 Console.WriteLine();
             }
 
-            var response = user_event == null ? "Not Found" : "Event Deleted";
+            var response = userEvent == null ? "Not Found" : "Event Deleted";
             Console.WriteLine(response);
         }
 
@@ -111,9 +111,9 @@ namespace WingsAppUI
 
         private static void ListUserEvents()
         {
-            foreach (var user_event in bllFacade.UserEventService.GetAll())
+            foreach (var userEvent in bllFacade.UserEventService.GetAll())
             {
-                Console.WriteLine($"Id: {user_event.ID} Title: {user_event.Title} \n");
+                Console.WriteLine($"Id: {userEvent.Id} Title: {userEvent.Title} \n");
             }
         }
         public static int getIntValue(string msg, string wrongValueExceptionMsg = "Provied value is not a integer number")

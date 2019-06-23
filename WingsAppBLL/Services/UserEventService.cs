@@ -18,11 +18,11 @@ namespace WingsAppBLL.Services
             this.facade = facade;
         }
         //Create
-        public UserEventBO Create(UserEventBO user_event)
+        public UserEventBO Create(UserEventBO userEvent)
         {
             using(var uow = facade.UnitOfWork)
             {
-                var newEvent = uow.UserEventRepository.Create(conv.Convert(user_event));
+                var newEvent = uow.UserEventRepository.Create(conv.Convert(userEvent));
                 uow.Complete();
                 return conv.Convert(newEvent);
             }
@@ -42,23 +42,24 @@ namespace WingsAppBLL.Services
         {
             using(var uow = facade.UnitOfWork)
             {
-                return conv.Convert(uow.UserEventRepository.Get(Id));
+                var userEvent = uow.UserEventRepository.Get(Id);
+                return conv.Convert(userEvent);
             }
         }
 
         //Update
-        public UserEventBO Update(UserEventBO user_event)        
+        public UserEventBO Update(UserEventBO userEvent)        
         {
             using(var uow = facade.UnitOfWork)
             {
-                var userEventFromDb = uow.UserEventRepository.Get(user_event.ID);
+                var userEventFromDb = uow.UserEventRepository.Get(userEvent.Id);
                 if (userEventFromDb == null)
                 {
                     throw new InvalidOperationException("User Event not found");
                 }
                 
-                userEventFromDb.Title = user_event.Title;
-                userEventFromDb.Description = user_event.Description;
+                userEventFromDb.Title = userEvent.Title;
+                userEventFromDb.Description = userEvent.Description;
                 uow.Complete();
                 return conv.Convert(userEventFromDb);
             }

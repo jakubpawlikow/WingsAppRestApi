@@ -12,14 +12,14 @@ namespace WingsAppDAL.Repositories
         private static List<UserEvent> UserEvents = new List<UserEvent>();
 
         //Create
-        public UserEvent Create(UserEvent user_event)
+        public UserEvent Create(UserEvent userEvent)
         {
              UserEvent newEvent;
              UserEvents.Add(newEvent = new UserEvent()
              {
-                 ID = Id++,
-                 Title = user_event.Title,
-                 Description = user_event.Description,
+                 Id = Id++,
+                 Title = userEvent.Title,
+                 Description = userEvent.Description,
              });
              return newEvent;
         }
@@ -31,15 +31,15 @@ namespace WingsAppDAL.Repositories
         }
         public UserEvent Get(int Id)
         {
-            return UserEvents.FirstOrDefault(obj => obj.ID == Id);
+            return UserEvents.FirstOrDefault(obj => obj.Id == Id);
         }
 
         //Delete
         public UserEvent Delete(int Id)
         {
-            var user_event = Get(Id);
-            UserEvents.Remove(user_event);
-            return user_event;
+            var userEvent = Get(Id);
+            UserEvents.Remove(userEvent);
+            return userEvent;
         }
     }
 }
