@@ -28,22 +28,22 @@ namespace WingsAppRestAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] UserEventBO user_event)
+        public ActionResult Post([FromBody] UserEventBO userEvent)
         {
-            return Ok(facade.UserEventService.Create(user_event));
+            return Ok(facade.UserEventService.Create(userEvent));
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] UserEventBO user_event)
+        public ActionResult Put(int id, [FromBody] UserEventBO userEvent)
         {
-            if (id != user_event.ID)
+            if (id != userEvent.Id)
             {
                 return StatusCode(405, "Path id not matching with json id");
             }
             try
             {
-                var edited_event = facade.UserEventService.Update(user_event);
-                return Ok(edited_event);
+                var editedEvent = facade.UserEventService.Update(userEvent);
+                return Ok(editedEvent);
             }
             catch (InvalidOperationException e)
             {
