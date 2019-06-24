@@ -8,11 +8,11 @@ using WingsAppDAL.Entities;
 
 namespace WingsAppDAL.Repositories
 {
-    class UserEventRepositoryEFMemory : IUserEventRepository
+    class UserEventRepository : IUserEventRepository
     {
         WingsAppContext  _context;
 
-        public UserEventRepositoryEFMemory(WingsAppContext context)
+        public UserEventRepository(WingsAppContext context)
         {
             _context = context;
         }

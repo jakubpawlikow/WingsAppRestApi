@@ -22,5 +22,6 @@ namespace WingsAppDAL.Context
 
         public DbSet<UserEvent> UserEvents { get; set; }
         public DbSet<UserProfile> UserProfiles {get; set; }
+        public DbSet<EventType> EventTypes { get; set; }
     }
 }

@@ -8,14 +8,14 @@ namespace WingsAppBLL
     public interface IUserProfileService
     {
         //Create
-        UserProfileBO Create(UserProfileBO user_profile);
+        UserProfileBO Create(UserProfileBO userProfile);
 
         //Read
         List<UserProfileBO> GetAll();
         UserProfileBO Get(int Id);
 
         //Update
-        UserProfileBO Update(UserProfileBO user_profile);
+        UserProfileBO Update(UserProfileBO userProfile);
 
         //Delete
         UserProfileBO Delete(int Id);

@@ -58,12 +58,13 @@ namespace WingsAppBLL.Services
                 {
                     throw new InvalidOperationException("User Event not found");
                 }
-                
-                userEventFromDb.Title = userEvent.Title;
-                userEventFromDb.Description = userEvent.Description;
-                userEventFromDb.ReporterId = userEvent.ReporterId;
+                var userEventUpdated = conv.Convert(userEvent);
+                userEventFromDb.Title = userEventUpdated.Title;
+                userEventFromDb.Description = userEventUpdated.Description;
+                userEventFromDb.ReporterId = userEventUpdated.ReporterId;
+                userEventFromDb.Types = userEventUpdated.Types;
                 uow.Complete();
-                userEventFromDb.Reporter = uow.UserProfileRepository.Get(userEvent.ReporterId);
+                userEventFromDb.Reporter = uow.UserProfileRepository.Get(userEventUpdated.ReporterId);
                 return conv.Convert(userEventFromDb);
             }
         }

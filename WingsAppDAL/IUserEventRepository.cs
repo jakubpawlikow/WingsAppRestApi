@@ -8,7 +8,7 @@ namespace WingsAppDAL
     public interface IUserEventRepository
     {
         //Create
-        UserEvent Create(UserEvent user_event);
+        UserEvent Create(UserEvent userEvent);
 
         //Read
         List<UserEvent> GetAll();

@@ -8,6 +8,7 @@ namespace WingsAppDAL
     {
         IUserEventRepository UserEventRepository { get; }
         IUserProfileRepository UserProfileRepository { get; }
+        IEventTypeRepository EventTypeRepository { get; set; }
 
         int Complete();
 

@@ -22,5 +22,6 @@ namespace WingsAppBLL.BusinessObjects
         // public IList<UserEventTag> UserEventTags { get; set; } = new List<UserEventTag>();
         public int ReporterId { get; set; }
         public UserProfileBO Reporter { get; set; }
+        public List<EventTypeBO> Types { get; set; }
     }
 }

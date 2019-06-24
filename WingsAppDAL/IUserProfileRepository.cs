@@ -8,7 +8,7 @@ namespace WingsAppDAL
     public interface IUserProfileRepository
     {
         //Create
-        UserProfile Create(UserProfile user_profile);
+        UserProfile Create(UserProfile userProfile);
 
         //Read
         List<UserProfile> GetAll();
