@@ -12,6 +12,7 @@ namespace WingsAppDAL.Entities
         public string LastName { get; set; }
         public DateTime JoinDate { get; set; }
 
-        public List<UserEvent> Event{ get; set; }
+        public List<UserEvent> Events { get; set; }
+        public List<UserEventUserProfile> AssignedToEvents { get; set; }
     }
 }
