@@ -14,6 +14,8 @@ namespace WingsAppDAL
         List<UserProfile> GetAll();
         UserProfile Get(int Id);
 
+        IEnumerable<UserProfile> GetAllById(List<int> ids);
+
         //Delete
         UserProfile Delete(int Id);
     }

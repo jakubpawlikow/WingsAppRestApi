@@ -13,7 +13,6 @@ namespace WingsAppDAL
         //Read
         List<UserEvent> GetAll();
         UserEvent Get(int Id);
-
         //Delete
         UserEvent Delete(int Id);
     }

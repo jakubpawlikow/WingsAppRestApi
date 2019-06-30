@@ -11,7 +11,8 @@ namespace WingsAppBLL.Services
 {
     class UserEventService : IUserEventService
     {
-        UserEventConverter conv = new UserEventConverter();
+        UserEventConverter uEConv = new UserEventConverter();
+        UserProfileConverter uPConv = new UserProfileConverter();
         DALFacade facade;
         public UserEventService(DALFacade facade)
         {
@@ -22,9 +23,9 @@ namespace WingsAppBLL.Services
         {
             using(var uow = facade.UnitOfWork)
             {
-                var newEvent = uow.UserEventRepository.Create(conv.Convert(userEvent));
+                var newEvent = uow.UserEventRepository.Create(uEConv.Convert(userEvent));
                 uow.Complete();
-                return conv.Convert(newEvent);
+                return uEConv.Convert(newEvent);
             }
         }
 
@@ -33,7 +34,7 @@ namespace WingsAppBLL.Services
         {
             using(var uow = facade.UnitOfWork)
             {
-                return uow.UserEventRepository.GetAll().Select(ue => conv.Convert(ue)).ToList();
+                return uow.UserEventRepository.GetAll().Select(ue => uEConv.Convert(ue)).ToList();
             }       
         }
 
@@ -42,9 +43,10 @@ namespace WingsAppBLL.Services
         {
             using(var uow = facade.UnitOfWork)
             {
-                var userEvent = uow.UserEventRepository.Get(Id);
-                userEvent.Reporter = uow.UserProfileRepository.Get(userEvent.ReporterId);
-                return conv.Convert(userEvent);
+                var result = uEConv.Convert(uow.UserEventRepository.Get(Id));
+                result.Reporter = uPConv.Convert(uow.UserProfileRepository.Get(result.ReporterId));
+                result.Assigners = uow.UserProfileRepository.GetAllById(result.AssignersIds).Select(up => uPConv.Convert(up)).ToList();
+                return result;
             }
         }
 
@@ -58,14 +60,13 @@ namespace WingsAppBLL.Services
                 {
                     throw new InvalidOperationException("User Event not found");
                 }
-                var userEventUpdated = conv.Convert(userEvent);
+                var userEventUpdated = uEConv.Convert(userEvent);
                 userEventFromDb.Title = userEventUpdated.Title;
                 userEventFromDb.Description = userEventUpdated.Description;
                 userEventFromDb.ReporterId = userEventUpdated.ReporterId;
-                userEventFromDb.Types = userEventUpdated.Types;
                 uow.Complete();
                 userEventFromDb.Reporter = uow.UserProfileRepository.Get(userEventUpdated.ReporterId);
-                return conv.Convert(userEventFromDb);
+                return uEConv.Convert(userEventFromDb);
             }
         }
 
@@ -76,7 +77,7 @@ namespace WingsAppBLL.Services
             {
                 var deletedEvent = uow.UserEventRepository.Delete(Id);
                 uow.Complete();
-                return conv.Convert(deletedEvent);
+                return uEConv.Convert(deletedEvent);
             }
         }
     }

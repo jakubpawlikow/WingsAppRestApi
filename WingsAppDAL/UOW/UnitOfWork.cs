@@ -8,7 +8,6 @@ namespace WingsAppDAL.UOW
     {
         public IUserEventRepository UserEventRepository { get; internal set; }
         public IUserProfileRepository UserProfileRepository { get; internal set; }
-        public IEventTypeRepository EventTypeRepository { get; set; }
         private WingsAppContext context;
 
         public UnitOfWork()
@@ -16,7 +15,6 @@ namespace WingsAppDAL.UOW
             context = new WingsAppContext();
             UserEventRepository = new UserEventRepository(context);
             UserProfileRepository = new UserProfileRepository(context);
-            EventTypeRepository = new EventTypeRepository(context);
         }
 
         public int Complete()

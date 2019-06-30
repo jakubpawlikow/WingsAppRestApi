@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 using WingsAppDAL.Context;
 using WingsAppDAL.Entities;
 
@@ -30,6 +31,11 @@ namespace WingsAppDAL.Repositories
         public UserProfile Get(int Id)
         {
             return _context.UserProfiles.FirstOrDefault(obj => obj.Id == Id);
+        }
+        public IEnumerable<UserProfile> GetAllById(List<int> ids)
+        {
+            if (ids == null) {return null; }
+            return _context.UserProfiles.Where(up => ids.Contains(up.Id));
         }
 
         //Delete

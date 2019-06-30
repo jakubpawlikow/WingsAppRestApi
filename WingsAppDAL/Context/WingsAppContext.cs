@@ -17,19 +17,17 @@ namespace WingsAppDAL.Context
         // Options that we want in memory
         public WingsAppContext() : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserEventUserProfile>().HasKey(ep => new { ep.UserEventId, ep.UserProfileId });
             modelBuilder.Entity<UserEventUserProfile>().HasOne(ep => ep.UserEvent).WithMany(e => e.Assigners).HasForeignKey(ep => ep.UserEventId);
-            modelBuilder.Entity<UserEventUserProfile>().HasOne(ep => ep.UserProfile).WithMany(p => p.AssignedToEvents).HasForeignKey(ep => ep.UserProfileId);
+            modelBuilder.Entity<UserEventUserProfile>().HasOne(ep => ep.UserProfile).WithMany(p => p.AssignedEvents).HasForeignKey(ep => ep.UserProfileId);
             base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<UserEvent> UserEvents { get; set; }
         public DbSet<UserProfile> UserProfiles {get; set; }
-        public DbSet<EventType> EventTypes { get; set; }
     }
 }

@@ -9,10 +9,10 @@ namespace WingsAppBLL.Converters
 {
     class UserEventConverter
     {
-        private EventTypeConverter eventTypeConverter;
+        private UserProfileConverter userProfileConverter;
         public UserEventConverter()
         {
-            eventTypeConverter = new EventTypeConverter();
+            userProfileConverter = new UserProfileConverter();
         }
         internal UserEvent Convert(UserEventBO userEvent)
         {
@@ -24,7 +24,10 @@ namespace WingsAppBLL.Converters
                 Title = userEvent.Title,
                 Description = userEvent.Description,
                 ReporterId = userEvent.ReporterId,
-                Types = userEvent.Types.Select(eventTypeConverter.Convert).ToList()
+                Assigners = userEvent.AssignersIds?.Select(aId => new UserEventUserProfile() {
+                    UserProfileId = aId,
+                    UserEventId = userEvent.Id
+                }).ToList()              
             };
         }
 
@@ -38,7 +41,7 @@ namespace WingsAppBLL.Converters
                 Description = userEvent.Description,
                 Reporter = new UserProfileConverter().Convert(userEvent.Reporter),
                 ReporterId = userEvent.ReporterId,
-                Types = userEvent.Types.Select(eventTypeConverter.Convert).ToList()
+                AssignersIds = userEvent.Assigners?.Select(a => a.UserProfileId).ToList()
             };
         }
     }

@@ -21,7 +21,6 @@ namespace WingsAppDAL.Entities
         // public IList<UserEventTag> UserEventTags { get; set; } = new List<UserEventTag>();
         public int ReporterId { get; set; }
         public UserProfile Reporter { get; set; }
-        public List<EventType> Types { get; set; }
         public List<UserEventUserProfile> Assigners { get; set; }
     }
 }

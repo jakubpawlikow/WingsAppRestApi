@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-
 namespace WingsAppBLL.BusinessObjects
 {
     public class UserEventBO
@@ -22,6 +21,8 @@ namespace WingsAppBLL.BusinessObjects
         // public IList<UserEventTag> UserEventTags { get; set; } = new List<UserEventTag>();
         public int ReporterId { get; set; }
         public UserProfileBO Reporter { get; set; }
-        public List<EventTypeBO> Types { get; set; }
+
+        public List<int> AssignersIds { get; set; }
+        public List<UserProfileBO> Assigners { get; set; }
     }
 }

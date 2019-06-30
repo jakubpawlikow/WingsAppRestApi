@@ -26,11 +26,13 @@ namespace WingsAppDAL.Repositories
         //Read
         public List<UserEvent> GetAll()
         {
-            return _context.UserEvents.ToList();
+            return _context.UserEvents
+                    .Include(ue => ue.Assigners)
+                    .ToList();
         }
         public UserEvent Get(int Id)
         {
-            return _context.UserEvents.FirstOrDefault(obj => obj.Id == Id);
+            return _context.UserEvents.Include(ue => ue.Assigners).FirstOrDefault(obj => obj.Id == Id);
         }
 
         //Delete
