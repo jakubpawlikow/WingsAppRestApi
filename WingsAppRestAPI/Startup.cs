@@ -46,13 +46,13 @@ namespace WingsAppRestAPI
                     Title="First Title", 
                     Description="Desc1", 
                     ReporterId=reporter.Id, 
-                    Assigners = new List<UserProfileBO>() { assigner }
+                    AssignersIds = new List<int>() { assigner.Id }
                 });
                 facade.UserEventService.Create(new UserEventBO() {
                     Title="Second Title", 
                     Description="Desc2", 
                     ReporterId=reporter.Id, 
-                    Assigners = new List<UserProfileBO>() { assigner }
+                    AssignersIds = new List<int>() { assigner.Id }
                 });
             }
             else

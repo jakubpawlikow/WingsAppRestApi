@@ -64,6 +64,14 @@ namespace WingsAppBLL.Services
                 userEventFromDb.Title = userEventUpdated.Title;
                 userEventFromDb.Description = userEventUpdated.Description;
                 userEventFromDb.ReporterId = userEventUpdated.ReporterId;
+                userEventFromDb.Assigners.RemoveAll(
+                    ep => !userEventUpdated.Assigners.Exists(iep => iep.UserProfileId == ep.UserProfileId && iep.UserEventId == ep.UserEventId)
+                );
+                userEventUpdated.Assigners.RemoveAll(
+                    ep => userEventFromDb.Assigners.Exists(iep => iep.UserProfileId == ep.UserProfileId && iep.UserEventId == ep.UserEventId)
+                );
+                userEventFromDb.Assigners.AddRange(userEventUpdated.Assigners);
+
                 uow.Complete();
                 userEventFromDb.Reporter = uow.UserProfileRepository.Get(userEventUpdated.ReporterId);
                 return uEConv.Convert(userEventFromDb);
