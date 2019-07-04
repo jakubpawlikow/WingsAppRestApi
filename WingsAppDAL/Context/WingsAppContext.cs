@@ -7,16 +7,24 @@ using WingsAppDAL.Entities;
 
 namespace WingsAppDAL.Context
 {
-    class WingsAppContext : DbContext
+    public class WingsAppContext : DbContext
     {
         static DbContextOptions<WingsAppContext> options = 
             new DbContextOptionsBuilder<WingsAppContext>()
                 .UseInMemoryDatabase("SomeDB")
                 .Options;
 
-        // Options that we want in memory
-        public WingsAppContext() : base(options)
+        // // // Options that we want in memory
+        // public WingsAppContext() : base(options)
+        // {
+        // }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=wings_app;Username=kuba;Password=1");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

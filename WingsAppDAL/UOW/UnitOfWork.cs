@@ -8,24 +8,25 @@ namespace WingsAppDAL.UOW
     {
         public IUserEventRepository UserEventRepository { get; internal set; }
         public IUserProfileRepository UserProfileRepository { get; internal set; }
-        private WingsAppContext context;
+        private WingsAppContext _context;
 
         public UnitOfWork()
         {
-            context = new WingsAppContext();
-            UserEventRepository = new UserEventRepository(context);
-            UserProfileRepository = new UserProfileRepository(context);
+            _context = new WingsAppContext();
+            _context.Database.EnsureCreated();
+            UserEventRepository = new UserEventRepository(_context);
+            UserProfileRepository = new UserProfileRepository(_context);
         }
 
         public int Complete()
         {
             // Number of objects written to the underlying database
-            return context.SaveChanges();
+            return _context.SaveChanges();
         }
 
         public void Dispose()
         {
-            context.Dispose();
+            _context.Dispose();
         }
 
     }
