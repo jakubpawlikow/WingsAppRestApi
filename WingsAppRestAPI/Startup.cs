@@ -30,6 +30,9 @@ namespace WingsAppRestAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder => {
+                builder.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
+                }));
             // services.AddEntityFrameworkNpgsql().
             // AddDbContext<WingsAppContext>(opt =>opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("WingsAppRestAPI")));
         }
